@@ -116,7 +116,7 @@ public class MavenDependencyScannerTest
     @Rule
     public final RestoreSystemProperties restoreSystemProperties = new RestoreSystemProperties();
     @Rule
-	public final ProvideSystemProperty myPropertyHasMyValue	 = new ProvideSystemProperty("sun.java.command", "-s src/test/resources/settings.xml -gs src/test/resources/settings.xml -X");
+	public final ProvideSystemProperty myPropertyHasMyValue	 = new ProvideSystemProperty("sun.java.command", "-X -s src/test/resources/settings.xml -gs src/test/resources/settings.xml -B");
     @Test
     public void testMavenSettings()
     {
