@@ -80,9 +80,7 @@ public class DependencyTest {
 
     @Test
     public void testToString() {
-
         String dependenciesString = DEP1.toString();
-        
         assertThat(dependenciesString, equalTo(DEPENDENCIES_STRING2));
     }
 
