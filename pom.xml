@@ -73,7 +73,7 @@
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api</artifactId>
-      <version>7.9.2</version>
+      <version>7.9.3.33150</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -137,7 +137,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
