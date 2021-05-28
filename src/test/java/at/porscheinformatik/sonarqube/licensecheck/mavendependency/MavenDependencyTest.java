@@ -1,6 +1,8 @@
 package at.porscheinformatik.sonarqube.licensecheck.mavendependency;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -10,6 +12,14 @@ public class MavenDependencyTest {
         // Arrange, Act and Assert
         assertEquals("Key", (new MavenDependency("Key", "License")).getKey());
     }
+
+    @Test
+    public void testSetKey() {
+        MavenDependency mavenDependency = new MavenDependency("Key2", "License");
+        mavenDependency.setKey("Key");
+        assertEquals("Key", (mavenDependency.getKey()));
+    }
+
 
     @Test
     public void testGetLicense() {
@@ -62,6 +72,20 @@ public class MavenDependencyTest {
     public void testHashCode() {
         // Arrange, Act and Assert
         assertEquals(1833746819, (new MavenDependency("Key", "License")).hashCode());
+    }
+
+    @Test
+    public void testEquals() {
+        MavenDependency md1=new MavenDependency("Key", "License");
+        MavenDependency md2=new MavenDependency("Key", "License");
+        MavenDependency md3=new MavenDependency("Key1", "License1");
+        Object o = new Object();
+
+        assertTrue(md1.equals(md2));
+        assertTrue(md1.equals(md1));
+        assertFalse(md1.equals(md3));
+        assertFalse(md1.equals(null));
+        assertFalse(md1.equals(o));
     }
 }
 
