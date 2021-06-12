@@ -16,11 +16,9 @@ import org.sonar.api.utils.System2;
 public class MavenDependencyServiceTest {
     @Test
     public void testConstructor() {
-        // Arrange and Act
         MavenDependencyService actualMavenDependencyService = new MavenDependencyService(
             new ConfigurationBridge(new MapSettings()));
 
-        // Assert
         List<MavenDependency> mavenDependencies = actualMavenDependencyService.getMavenDependencies();
         assertTrue(mavenDependencies instanceof ArrayList);
         List<MavenDependency> mavenDependenciesOld = actualMavenDependencyService.getMavenDependenciesOld();
@@ -32,22 +30,18 @@ public class MavenDependencyServiceTest {
 
     @Test
     public void testGetMavenDependencies() {
-        // Arrange, Act and Assert
         assertTrue(
             (new MavenDependencyService(new ConfigurationBridge(new MapSettings()))).getMavenDependencies().isEmpty());
     }
 
     @Test
     public void testGetMavenDependencies2() {
-        // Arrange
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.maven.dep-mapping", "42");
 
-        // Act
         List<MavenDependency> actualMavenDependencies = (new MavenDependencyService(new ConfigurationBridge(mapSettings)))
             .getMavenDependencies();
 
-        // Assert
         assertEquals(1, actualMavenDependencies.size());
         MavenDependency getResult = actualMavenDependencies.get(0);
         assertNull(getResult.getKey());
@@ -56,15 +50,12 @@ public class MavenDependencyServiceTest {
 
     @Test
     public void testGetMavenDependencies3() {
-        // Arrange
         MapSettings mapSettings = new MapSettings(new PropertyDefinitions(new System2(), "42", "42", "42"));
         mapSettings.appendProperty("licensecheck.maven.dep-mapping", "42");
 
-        // Act
         List<MavenDependency> actualMavenDependencies = (new MavenDependencyService(new ConfigurationBridge(mapSettings)))
             .getMavenDependencies();
 
-        // Assert
         assertEquals(1, actualMavenDependencies.size());
         MavenDependency getResult = actualMavenDependencies.get(0);
         assertNull(getResult.getKey());
@@ -73,16 +64,13 @@ public class MavenDependencyServiceTest {
 
     @Test
     public void testGetMavenDependencies4() {
-        // Arrange
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.maven.dep-mapping", "42");
         mapSettings.appendProperty("licensecheck.maven.dep-mapping", "42");
 
-        // Act
         List<MavenDependency> actualMavenDependencies = (new MavenDependencyService(new ConfigurationBridge(mapSettings)))
             .getMavenDependencies();
 
-        // Assert
         assertEquals(2, actualMavenDependencies.size());
         MavenDependency getResult = actualMavenDependencies.get(1);
         assertNull(getResult.getLicense());
@@ -94,41 +82,8 @@ public class MavenDependencyServiceTest {
 
     @Test
     public void testGetMavenDependenciesOld() {
-        // Arrange, Act and Assert
         assertTrue(
             (new MavenDependencyService(new ConfigurationBridge(new MapSettings()))).getMavenDependenciesOld().isEmpty());
     }
-
-//    @Test
-//    public void testGetMavenDependenciesOld2() {
-//        // TODO: This test is incomplete.
-//        //   Reason: No meaningful assertions found.
-//        //   To help Diffblue Cover to find assertions, please add getters to the
-//        //   class under test that return fields written by the method under test.
-//        //   See https://diff.blue/R004
-//
-//        // Arrange
-//        MapSettings mapSettings = new MapSettings();
-//        mapSettings.appendProperty("licensecheck.alloweddependencies", "42");
-//
-//        // Act
-//        (new MavenDependencyService(new ConfigurationBridge(mapSettings))).getMavenDependenciesOld();
-//    }
-//
-//    @Test
-//    public void testGetMavenDependenciesOld3() {
-//        // TODO: This test is incomplete.
-//        //   Reason: No meaningful assertions found.
-//        //   To help Diffblue Cover to find assertions, please add getters to the
-//        //   class under test that return fields written by the method under test.
-//        //   See https://diff.blue/R004
-//
-//        // Arrange
-//        MapSettings mapSettings = new MapSettings(new PropertyDefinitions(new System2(), "42", "42", "42"));
-//        mapSettings.appendProperty("licensecheck.alloweddependencies", "42");
-//
-//        // Act
-//        (new MavenDependencyService(new ConfigurationBridge(mapSettings))).getMavenDependenciesOld();
-//    }
 }
 

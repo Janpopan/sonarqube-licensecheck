@@ -7,7 +7,6 @@ import org.junit.Test;
 public class SettingTest {
     @Test
     public void testGetLocalRepositoryPath() {
-        // Arrange, Act and Assert
         assertNull((new Setting()).getLocalRepositoryPath());
     }
 }

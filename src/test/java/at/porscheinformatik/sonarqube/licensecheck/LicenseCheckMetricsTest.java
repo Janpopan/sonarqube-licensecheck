@@ -7,7 +7,6 @@ import org.junit.Test;
 public class LicenseCheckMetricsTest {
     @Test
     public void testGetMetrics() {
-        // Arrange, Act and Assert
         assertEquals(7, (new LicenseCheckMetrics()).getMetrics().size());
     }
 }

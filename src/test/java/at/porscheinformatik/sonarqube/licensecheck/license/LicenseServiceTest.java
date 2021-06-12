@@ -18,14 +18,12 @@ import org.sonar.api.config.internal.MapSettings;
 public class LicenseServiceTest {
     @Test
     public void testConstructor() {
-        // Arrange
+       
         ConfigurationBridge configuration = new ConfigurationBridge(new MapSettings());
         ProjectLicenseService projectLicenseService = new ProjectLicenseService(new ConfigurationBridge(new MapSettings()));
 
-        // Act
         LicenseService actualLicenseService = new LicenseService(configuration, projectLicenseService);
 
-        // Assert
         List<License> licenses = actualLicenseService.getLicenses();
         assertTrue(licenses instanceof ArrayList);
         List<License> licensesOld = actualLicenseService.getLicensesOld();
@@ -48,10 +46,9 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses() {
-        // Arrange
+
         ConfigurationBridge configuration = new ConfigurationBridge(new MapSettings());
 
-        // Act and Assert
         assertTrue(
             (new LicenseService(configuration, new ProjectLicenseService(new ConfigurationBridge(new MapSettings()))))
                 .getLicenses()
@@ -60,16 +57,14 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses2() {
-        // Arrange
+
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.license-set", "42");
         ConfigurationBridge configuration = new ConfigurationBridge(mapSettings);
 
-        // Act
         List<License> actualLicenses = (new LicenseService(configuration,
             new ProjectLicenseService(new ConfigurationBridge(new MapSettings())))).getLicenses();
 
-        // Assert
         assertEquals(1, actualLicenses.size());
         License getResult = actualLicenses.get(0);
         assertFalse(getResult.getAllowed());
@@ -79,17 +74,15 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses3() {
-        // Arrange
+
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.license-set", "42");
         mapSettings.appendProperty("licensecheck.license-set", "42");
         ConfigurationBridge configuration = new ConfigurationBridge(mapSettings);
 
-        // Act
         List<License> actualLicenses = (new LicenseService(configuration,
             new ProjectLicenseService(new ConfigurationBridge(new MapSettings())))).getLicenses();
 
-        // Assert
         assertEquals(2, actualLicenses.size());
         License getResult = actualLicenses.get(1);
         assertNull(getResult.getName());
@@ -103,10 +96,9 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses4() {
-        // Arrange
+
         ConfigurationBridge configuration = new ConfigurationBridge(new MapSettings());
 
-        // Act and Assert
         assertTrue(
             (new LicenseService(configuration, new ProjectLicenseService(new ConfigurationBridge(new MapSettings()))))
                 .getLicenses(null)
@@ -115,16 +107,14 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses5() {
-        // Arrange
+
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.license-set", "42");
         ConfigurationBridge configuration = new ConfigurationBridge(mapSettings);
 
-        // Act
         List<License> actualLicenses = (new LicenseService(configuration,
             new ProjectLicenseService(new ConfigurationBridge(new MapSettings())))).getLicenses(null);
 
-        // Assert
         assertEquals(1, actualLicenses.size());
         License getResult = actualLicenses.get(0);
         assertFalse(getResult.getAllowed());
@@ -134,17 +124,15 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicenses6() {
-        // Arrange
+
         MapSettings mapSettings = new MapSettings();
         mapSettings.appendProperty("licensecheck.license-set", "42");
         mapSettings.appendProperty("licensecheck.license-set", "42");
         ConfigurationBridge configuration = new ConfigurationBridge(mapSettings);
 
-        // Act
         List<License> actualLicenses = (new LicenseService(configuration,
             new ProjectLicenseService(new ConfigurationBridge(new MapSettings())))).getLicenses(null);
 
-        // Assert
         assertEquals(2, actualLicenses.size());
         License getResult = actualLicenses.get(1);
         assertNull(getResult.getName());
@@ -158,10 +146,9 @@ public class LicenseServiceTest {
 
     @Test
     public void testGetLicensesOld() {
-        // Arrange
+
         ConfigurationBridge configuration = new ConfigurationBridge(new MapSettings());
 
-        // Act and Assert
         assertTrue(
             (new LicenseService(configuration, new ProjectLicenseService(new ConfigurationBridge(new MapSettings()))))
                 .getLicensesOld()
